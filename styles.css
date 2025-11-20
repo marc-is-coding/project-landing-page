@@ -1,3 +1,12 @@
+/* 
+1.) Open the following link:
+
+https://www.theodinproject.com/lessons/foundations-landing-page
+- open the 2 pictures
+
+2.) Open live server and goal picture
+ */
+
 body {
     font-family: Roboto;
     margin: 0;
@@ -7,15 +16,17 @@ body {
 /* will be interesting to see, how the solution handled the padding left and right
 * finally found my solution with 'CSS always uses the same page spacing on the left and right'
 * */
-body>* {
-    padding: 10px 180px;
-}
+/* body > * { */
+/*     padding: 10px 180px; */
+/* } */
 
+/* -------------------- Header -------------------- */
 .header {
     background-color: #1f2937;
     color: #f9faf8;
     display: flex;
     flex-direction: column;
+    padding: 10px 180px;
 }
 
 .header-top {
@@ -69,8 +80,27 @@ h1 {
     margin-right: 40px;
 }
 
+/* -------------------- Header END -------------------- */
 
-/* TODO: why isnt the grey placeholder-box filling out all the space? bc the background color was in the wrong div (here), has to be one level higher*/
+
+/* TODO: make sure that all sections are same size; now they are not, bc of paddings etc.*/
+/* wrapper to make all sections between header and footer the same size */
+.body-wrapper {
+    display: flex;
+    flex-direction: column;
+}
+
+.body-wrapper > * {
+    flex: 1;
+}
+
+/* -------------------- Body-Container-One -------------------- */
+
+.body-container-one {
+    padding: 10px 180px;
+}
+
+/* why isnt the grey placeholder-box filling out all the space? bc the background color was in the wrong div (here), has to be one level higher*/
 .image-placeholder {
     flex: 1;
     text-align: center;
@@ -106,11 +136,6 @@ img {
     font-weight: 900;
 }
 
-.footer {
-    background-color: #e9e5e7;
-    text-align: center;
-}
-
 ul {
     margin: 0;
     padding: 0;
@@ -126,3 +151,44 @@ a {
     color: inherit;
     text-decoration: none;
 }
+/* -------------------- Body-Container-One END -------------------- */
+
+
+/* -------------------- Body-Container-Two -------------------- */
+
+/* TODO: make this "footer" appear on the right side*/
+.body-container-two {
+    background-color: #e5e7eb;
+    padding: 60px 180px;
+    font-style: italic;
+}
+
+.quote {
+    display: flex;
+    flex-direction: column;
+}
+
+blockquote {
+    font-size: 36px;
+    font-weight: 300;
+}
+
+/* how does the solution align the subtext? */
+footer {
+    font-size: 24px;
+    font-weight: 900;
+    text-align: right;
+}
+
+
+/* -------------------- Body-Container-Two END -------------------- */
+
+/* -------------------- Footer -------------------- */
+.footer {
+    padding: 20px 180px;
+    color: #f9faf8;
+    background-color: #1f2937;
+    text-align: center;
+}
+
+/* -------------------- Footer END -------------------- */
