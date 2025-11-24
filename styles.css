@@ -8,26 +8,41 @@ https://www.theodinproject.com/lessons/foundations-landing-page
  */
 
 body {
-    font-family: Roboto;
     margin: 0;
     padding: 0;
+    display: flex;
+    flex-direction: column;
+    font-family: Roboto;
 }
+
+body > * {
+    flex: 1;
+}
+
+.button {
+    padding: 8px 28px;
+    border-radius: 8px;
+}
+
 
 /* will be interesting to see, how the solution handled the padding left and right
 * finally found my solution with 'CSS always uses the same page spacing on the left and right'
 * */
-/* body > * { */
-/*     padding: 10px 180px; */
-/* } */
 
 /* -------------------- Header -------------------- */
+
+/* Ask LLM: why doesn't it work, if i put align-items: space-around here? if i do it, the divs just stick left and right, but there is no space on the edges. Is it maybe, bc ther is only one item 'heade-wrapper' then, and thats why there is no space distributed on the edges?*/
 .header {
     background-color: #1f2937;
     color: #f9faf8;
+    padding: 10px;
     display: flex;
     flex-direction: column;
-    padding: 10px 180px;
+    align-items: center; 
 }
+
+/* .header-wrapper { */
+/* } */
 
 .header-top {
     display: flex;
@@ -35,7 +50,7 @@ body {
     margin-bottom: 60px;
 }
 
-#header-logo-text {
+.header-top-left {
     font-size: 24px;
     font-weight: 900;
 }
@@ -54,12 +69,8 @@ h1 {
 .header-bottom {
     display: flex;
     justify-content: space-between;
-    margin-bottom: 60px;
-}
-
-.button {
-    padding: 8px 28px;
-    border-radius: 8px;
+    margin-bottom: 80px;
+    gap: 50px;
 }
 
 .button-top {
@@ -75,9 +86,12 @@ h1 {
     background-color: #6d747d;
 }
 
+.image-placeholder {
+    margin: auto auto;
+}
+
 .header-bottom-left {
     width: 450px;
-    margin-right: 40px;
 }
 
 /* -------------------- Header END -------------------- */
@@ -85,27 +99,24 @@ h1 {
 
 /* TODO: make sure that all sections are same size; now they are not, bc of paddings etc.*/
 /* wrapper to make all sections between header and footer the same size */
-.body-wrapper {
-    display: flex;
-    flex-direction: column;
-}
-
-.body-wrapper > * {
-    flex: 1;
-}
+/* .body-wrapper { */
+/*     display: flex; */
+/*     flex-direction: column; */
+/* } */
+/**/
+/* .body-wrapper > * { */
+/*     flex: 1; */
+/* } */
 
 /* -------------------- Body-Container-One -------------------- */
 
-.body-container-one {
-    padding: 10px 180px;
-}
 
 /* why isnt the grey placeholder-box filling out all the space? bc the background color was in the wrong div (here), has to be one level higher*/
-.image-placeholder {
-    flex: 1;
-    text-align: center;
-    margin: auto;
-}
+/* .image-placeholder { */
+/*     flex: 1; */
+/*     text-align: center; */
+/*     margin: auto; */
+/* } */
 
 h2 {
     /* all children of body element have padding of 10px */
@@ -116,20 +127,28 @@ h2 {
     text-align: center;
 }
 
-img {
-    width: 180px;
-    height: 180px;
-}
 
 .bco-card-wrapper {
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
+    gap: 50px;
+    margin-bottom: 80px;
 }
 
 .card {
     width: 180px;
     height: 250px;
     text-align: center;
+}
+
+.frame {
+    width: 170px;
+    height: 170px;
+    border-style: solid;
+    border-color: #3b82f6;
+    border-radius: 8px;
+    border-width: 4px;
+    margin-bottom: 8px;
 }
         
 #information {
@@ -159,12 +178,16 @@ a {
 /* TODO: make this "footer" appear on the right side*/
 .body-container-two {
     background-color: #e5e7eb;
-    padding: 60px 180px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* padding: 60px 60px; */
 }
 
 .quote {
-    display: flex;
-    flex-direction: column;
+    max-width: 900px;
+    margin-bottom: 60px;
+    margin-top: 60px;
 }
 
 blockquote {
@@ -188,17 +211,22 @@ cite {
 /* -------------------- Body-Container-Three -------------------- */
 
 .body-container-three {
-    padding: 60px 180px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     color: #f9faf8;
+    margin-top: 80px;
+    margin-bottom: 80px;
 }
 
 .bc3-blue-container {
     background-color: #3b82f6;
     border-radius: 8px;
-    padding: 40px;
+    padding: 40px 140px;
     display: flex;
     justify-content: space-around;
     align-items: center;
+    gap: 30px;
 }
 
 h3 {
@@ -219,7 +247,8 @@ h3 {
 
 /* -------------------- Footer -------------------- */
 .footer {
-    padding: 20px 180px;
+    padding-top: 40px; 
+    padding-bottom: 40px;
     color: #f9faf8;
     background-color: #1f2937;
     text-align: center;
