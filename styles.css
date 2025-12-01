@@ -1,153 +1,161 @@
-/* original solution */
-
-/* 
-1.) Open the following link:
-
-https://www.theodinproject.com/lessons/foundations-landing-page
-- open the 2 pictures
-
-2.) Open live server and goal picture
- */
-
-body {
+* {
     margin: 0;
     padding: 0;
-    display: flex;
-    flex-direction: column;
-    font-family: Roboto;
+    box-sizing: border-box;
 }
+
+:root {
+    /* Colors */
+    --color-dark: #1f2937;
+    --color-white: #f9faf8;
+    --color-secondary: #e5e7eb;
+    --color-blue: #3882f6;
+    --color-gray: #6d747d;
+
+    /* Typography */
+    --font-main: 'Roboto', sans-serif;
+    --font-xs: 18px;
+    --font-sm: 24px;
+    --font-md: 36px;
+    --font-lg: 48px;
+    --weight-light: 300;
+    --weight-normal: 400;
+    --weight-bold: 900;
+
+    /* Spacing */
+    --space-xs: 8px;
+    --space-sm: 16px;
+    --space-md: 32px;
+    --space-lg: 48px;
+    --space-xl: 80px;
+
+    /* Layout */
+    --container-max-width: 1200px;
+    --container-padding: 40px;
+}
+
+/* to create spaces between the containers I am using margin on the respective "inner containers" */
+
+/* ================== BODY SETUP ================== */
+body {
+    font-family: var(--font-main);
+
+    /*Flexbox für Sticky footer und gleichmäßige Verteilung*/
+    display: flex; 
+    flex-direction: column;
+}
+
 
 body > * {
     flex: 1;
 }
 
+
+/* ================== UTILITIES ================== */
+
 .button {
-    padding: 8px 28px;
+    padding: var(--space-xs) var(--space-md);
     border-radius: 8px;
-}
-
-
-/* will be interesting to see, how the solution handled the padding left and right
-* finally found my solution with 'CSS always uses the same page spacing on the left and right'
-* */
-
-.filler {
-    flex-grow: 1;
-    flex-basis: 20%;
-    min-width: 0;
-}
-
-/* -------------------- Header -------------------- */
-
-/* Ask LLM: why doesn't it work, if i put align-items: space-around here? if i do it, the divs just stick left and right, but there is no space on the edges. Is it maybe, bc ther is only one item 'heade-wrapper' then, and thats why there is no space distributed on the edges?*/
-.header {
-    background-color: #1f2937;
-    color: #f9faf8;
-    padding: 10px;
-    display: flex;
-    /* justify-content: space-around; */
-}
-
-.header-wrapper {
-    flex-basis: auto;
-    flex-grow: 4;
-}
-
-.header-top {
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 60px;
-}
-
-.header-top-left {
-    font-size: 24px;
-    font-weight: 900;
-}
-
-h1 {
-    margin: 0;
-    font-size: 48px;
-    font-weight: 900;
-}
-
-#secondary-text {
-    font-size: 18px;
-    color: #f9faf8;
-}
-
-.header-bottom {
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 80px;
-    gap: 60px;
-}
-
-.button-top {
-    background-color: #3882f6;
     border: none;
-    margin-top: 10px;
-    color: #f9faf8;
+    font-size: var(--font-xs);
+    font-weight: bold;
+    cursor: pointer;
+}
+/* ================== HEADER ================== */
+
+.header {
+    background-color: var(--color-dark);
+    color: var(--color-white);
+    display: flex;
+    justify-content: center;
+    /* margin: 100px 100px; */
 }
 
-/* ask LLM: this container is still growing and shrinking, if I change size of browser*/
-.header-bottom-right {
-    flex-grow: 0;
+.container-header {
+    margin-top: var(--space-md);
+    margin-bottom: var(--space-xl);
+}
+
+.nav {
     display: flex;
     justify-content: space-between;
-    width: 450px;  
-    background-color: #6d747d;
+    align-items: center; /* is this really needed? */
+    margin-bottom: var(--space-xl);
 }
 
-.image-placeholder {
-    flex-shrink: 0;
-    flex-grow: 0;
-    flex-basis: 1;
-    margin: auto auto;
+
+.logo {
+    font-size: var(--font-sm);
+    font-weight: var(--weight-bold);
 }
 
-/* .header-bottom-left { */
-/*     width: 450px; */
-/* } */
+/* .nav-links ul {...} is the descendent-selector: "Select any <ul> that is inside .nav-links"*/
+/* list-style is applied to the ul --> of course the name list-style gives it away */
+.nav-links ul {
+    display: flex;
+    gap: var(--space-md);
+    list-style: none;
+}
 
-/* -------------------- Header END -------------------- */
+.nav-links a {
+    color: var(--color-secondary);
+    text-decoration: none;
+    font-size: var(--font-xs); 
+}
+
+.hero {
+    display: flex;
+    gap: var(--space-lg);
+    justify-content: space-between;
+    align-items: center;
+}
 
 
-/* TODO: make sure that all sections are same size; now they are not, bc of paddings etc.*/
-/* wrapper to make all sections between header and footer the same size */
-/* .body-wrapper { */
-/*     display: flex; */
-/*     flex-direction: column; */
-/* } */
-/**/
-/* .body-wrapper > * { */
-/*     flex: 1; */
-/* } */
+.hero-content h1 {
+    font-size: var(--font-lg);
+    font-weight: var(--weight-bold);
+    margin-bottom: var(--space-sm);
+}
 
-/* -------------------- Body-Container-One -------------------- */
+.hero p {
+    font-size: var(--font-xs);
+    color: var(--color-secondary);
+    margin-bottom: var(--space-md);
+}
 
+.button-primary {
+    background-color: var(--color-blue);
+    color: var(--color-white);
+}
 
-/* why isnt the grey placeholder-box filling out all the space? bc the background color was in the wrong div (here), has to be one level higher*/
-/* .image-placeholder { */
-/*     flex: 1; */
-/*     text-align: center; */
-/*     margin: auto; */
-/* } */
+.hero-image {
+    flex: 0 0 450px;
+    height: 250px;
+    background-color: var(--color-gray);
+    display: flex; 
+    align-items: center; 
+    justify-content: center;
+}
 
-h2 {
-    /* all children of body element have padding of 10px */
-    margin-top: 30px; 
-    margin-bottom: 40px;
+/* -------------------- INFO-SECTION -------------------- */
+
+.container-info-section {
+    margin-top: var(--space-md);
+    margin-bottom: var(--space-xl);
+}
+
+.container-info-section h2 {
+    margin-bottom: var(--space-md);
     font-size: 36px;
     color: #1f2937;
     text-align: center;
 }
 
-
-.bco-card-wrapper {
+.cards {
     display: flex;
     justify-content: center;
-    gap: 50px;
-    margin-bottom: 80px;
+    align-items: center;
+    gap: var(--space-lg);
 }
 
 .card {
@@ -166,107 +174,76 @@ h2 {
     margin-bottom: 8px;
 }
         
-#information {
-    font-weight: 900;
-}
+/* -------------------- QUOTE-SECTION -------------------- */
 
-ul {
-    margin: 0;
-    padding: 0;
+/* important learning: if I don't put a constraining width into the .quote-section(...) or one of his child-divs, then display: flex + justify-content: center won't work*/
+
+.quote-section {
+    background-color: var(--color-secondary);
     display: flex;
-    gap: 16px;
+    justify-content: center; 
 }
 
-li {
-    list-style-type: none;
+.container-quote {
+    margin: var(--space-xl) 0;
+    max-width: var(--container-max-width); /* REALLY IMPORTANT !!! */
 }
 
-a {
-    color: inherit;
-    text-decoration: none;
-}
-/* -------------------- Body-Container-One END -------------------- */
-
-
-/* -------------------- Body-Container-Two -------------------- */
-
-/* TODO: make this "footer" appear on the right side*/
-.body-container-two {
-    background-color: #e5e7eb;
-    display: flex;
-    align-items: center;
-    /* padding: 60px 60px; */
-}
-
-.quote {
-    flex-grow: 4;
-    margin-bottom: 60px;
-    margin-top: 60px;
-}
-
-blockquote {
+.container-quote blockquote p {
     font-size: 36px;
     font-weight: 300;
     font-style: italic;
 }
 
 /* how does the solution align the subtext? Why does text-align: right only work, if i apply it here in the footer, and not in the cite? Why doesn`t the font-style apply to the text if I put it in here?*/
-footer {
+.container-quote footer {
     text-align: right;
 }
 
-cite {
+.container-quote footer cite {
     font-style: normal;
     font-size: 24px;
     font-weight: 900;
 }
-/* -------------------- Body-Container-Two END -------------------- */
 
 /* -------------------- Body-Container-Three -------------------- */
 
-.body-container-three {
+.cta-section {
     display: flex;
+    justify-content: center;
     align-items: center;
-    color: #f9faf8;
+    color: var(--color-white);
 }
 
-.bc3-blue-container {
-    flex-grow: 4;
-    background-color: #3b82f6;
+.cta-box {
+    flex-grow: 1;
+    background-color: var(--color-blue);
     border-radius: 8px;
-    padding: 40px 140px;
+    margin: var(--space-xl) 0;
+    max-width: var(--container-max-width); /* REALLY IMPORTANT !!! */
+    padding: var(--container-padding);
     display: flex;
     justify-content: space-between;
     align-items: center;
-    gap: 80px;
-    margin-top: 80px;
-    margin-bottom: 80px;
 }
 
-h3 {
+.cta-text h3 {
     margin: 0;
 
 }
 
-.button-bottom {
-    flex-shrink: 0;
-    background-color: #3b82f6;
-    border: #f9faf8;
+.button-secondary {
+    background-color: var(--color-blue);
+    border: var(--color-white);
     border-style: solid;
     border-width: 2px;
-    margin-top: 10px;
     color: #f9faf8;
 }
-/* -------------------- Body-Container-Three END -------------------- */
 
-
-/* -------------------- Footer -------------------- */
+/* -------------------- FOOTER -------------------- */
 .footer {
-    padding-top: 40px; 
-    padding-bottom: 40px;
-    color: #f9faf8;
+    padding: var(--container-padding);
+    color: var(--color-white);
     background-color: #1f2937;
     text-align: center;
 }
-
-/* -------------------- Footer END -------------------- */
